@@ -1,5 +1,6 @@
 // Write your code here
 import {Component} from 'react'
+import Loader from 'react-loader-spinner'
 import LanguageFilterItem from '../LanguageFilterItem'
 import RepositoryItem from '../RepositoryItem'
 import './index.css'
@@ -13,7 +14,11 @@ const languageFiltersData = [
 ]
 
 class GithubPopularRepos extends Component {
-  state = {languagesData: [], activeLanguageId: languageFiltersData[0].id}
+  state = {
+    languagesData: [],
+    activeLanguageId: languageFiltersData[0].id,
+    isLoading: true,
+  }
 
   componentDidMount() {
     this.getLanguages()
@@ -21,7 +26,7 @@ class GithubPopularRepos extends Component {
 
   getLanguages = async () => {
     const {activeLanguageId} = this.state
-    const apiURL = `https://apis.ccbp.in/popular-repos?language${activeLanguageId}`
+    const apiURL = `https://apis.ccbp.in/popular-repos?language=${activeLanguageId}`
     const response = await fetch(apiURL)
     const data = await response.json()
     console.log(data)
@@ -43,7 +48,7 @@ class GithubPopularRepos extends Component {
       }),
     )
 
-    this.setState({languagesData: updatedData})
+    this.setState({languagesData: updatedData, isLoading: false})
   }
 
   onActiveImage = activeLanguageId => {
@@ -51,7 +56,7 @@ class GithubPopularRepos extends Component {
   }
 
   render() {
-    const {languagesData, activeLanguageId} = this.state
+    const {languagesData, activeLanguageId, isLoading} = this.state
     return (
       <div className="bg-container">
         <h1 className="main-heading">Popular</h1>
@@ -65,11 +70,19 @@ class GithubPopularRepos extends Component {
             />
           ))}
         </div>
-        <ul className="language-list">
-          {languagesData.map(eachItem => (
-            <RepositoryItem eachItemDetails={eachItem} key={eachItem.id} />
-          ))}
-        </ul>
+        {isLoading ? (
+          <div data-testid="loader">
+            <Loader type="ThreeDots" color="#0284c7" height={80} width={80} />
+          </div>
+        ) : (
+          <div>
+            <ul className="language-list">
+              {languagesData.map(eachItem => (
+                <RepositoryItem eachItemDetails={eachItem} key={eachItem.id} />
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
     )
   }
