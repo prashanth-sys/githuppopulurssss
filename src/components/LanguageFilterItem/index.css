@@ -1,0 +1,16 @@
+/* Write your CSS here */
+.list-items {
+  list-style-type: none;
+}
+.tabs-container {
+  display: flex;
+  flex-direction: row;
+}
+.button {
+  background-color: transparent;
+  border-width: 0px;
+  font-family: 'Roboto';
+  font-size: 17px;
+  color: #1e293b;
+  font-weight: bold;
+}

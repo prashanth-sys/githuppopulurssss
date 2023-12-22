@@ -1,0 +1,41 @@
+/* Write your CSS here */
+.image {
+  width: 55%;
+}
+.list-item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 48px;
+  width: 350px;
+  flex-grow: 0;
+  flex-shrink: 1;
+  margin-right: 20px;
+  background-color: #f8f8ff;
+  margin: 5px;
+  align-items: center;
+  padding: 5px;
+  padding-top: 19px;
+  width: 20%;
+  border-radius: 5px;
+}
+.language-name {
+  font-family: 'Roboto';
+  font-size: 25px;
+  color: #e73959;
+}
+.starts {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  margin: 5px;
+}
+.star {
+  font-family: 'Roboto';
+  margin-bottom: 0px;
+  margin-left: 9px;
+  color: #1e293b;
+  font-weight: 500;
+}
+.show {
+  background-color: yellow;
+}
